@@ -15,27 +15,12 @@ const Expenses = (props) => {
     if (filteredYear === 'all') {
       return true; 
     }
-    return expense.date.getFullYear().toString() === filteredYear;
+      return expense.date.getFullYear().toString() === filteredYear;
   });
 
-  let expensesContent = null;
-
-  if (filteredExpenses.length === 0) {
-    expensesContent = <p>No Expenses Found for the selected year.</p>;
-  } else if (filteredExpenses.length === 1) {
-    expensesContent = (
-      <div>
-        <p>Only single Expense here. Please add more...</p>
-        <ExpenseItem
-          key={filteredExpenses[0].id}
-          title={filteredExpenses[0].title}
-          amount={filteredExpenses[0].amount}
-          date={filteredExpenses[0].date}
-        />
-      </div>
-    );
-  } else {
-    expensesContent = filteredExpenses.map((expense) => (
+  let expensesContent = <p>No Expenses Found.</p>
+  if(filteredExpenses.length > 0){
+    expensesContent =  filteredExpenses.map((expense) => (
       <ExpenseItem
         key={expense.id}
         title={expense.title}
@@ -58,4 +43,4 @@ const Expenses = (props) => {
   );
 };
 
-export default Expenses;
+export default Expenses;
